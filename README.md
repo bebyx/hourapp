@@ -1,1 +1,3 @@
-Simple JavaScript app intended to show time.
+#Simple JavaScript app intended to show time.
+
+*Guess the favicon? :)*
