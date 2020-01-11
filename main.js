@@ -25,24 +25,28 @@ function update(dates) {
 	if (minutesNY < 10) minutesNY = "0" + minutesNY;
 	let secondsNY = dateNY.getSeconds();
 	if (secondsNY < 10) secondsNY = "0" + secondsNY;
-		        
-	document.getElementById("h_ny").innerHTML = hoursNY;
-	document.getElementById("m_ny").innerHTML = minutesNY;
-	document.getElementById("s_ny").innerHTML = secondsNY;
-
+	
+	if (document.getElementById("nytime-container") != null) {    
+		document.getElementById("h_ny").innerHTML = hoursNY;
+		document.getElementById("m_ny").innerHTML = minutesNY;
+		document.getElementById("s_ny").innerHTML = secondsNY;
+	}
 	//Ukraine (Kyiv) Time:
+	
 	let dateUA = dates[2];
 
-    let hoursUA = dateUA.getHours();
+	let hoursUA = dateUA.getHours();
 	if (hoursUA < 10) hoursUA = "0" + hoursUA;
 	let minutesUA = dateUA.getMinutes();
 	if (minutesUA < 10) minutesUA = "0" + minutesUA;
 	let secondsUA = dateUA.getSeconds();
 	if (secondsUA < 10) secondsUA = "0" + secondsUA;
-		        
-	document.getElementById("h_ua").innerHTML = hoursUA;
-	document.getElementById("m_ua").innerHTML = minutesUA;
-	document.getElementById("s_ua").innerHTML = secondsUA;
+	
+	if (document.getElementById("uatime-container") != null) {
+		document.getElementById("h_ua").innerHTML = hoursUA;
+		document.getElementById("m_ua").innerHTML = minutesUA;
+		document.getElementById("s_ua").innerHTML = secondsUA;
+ 	}
 
 	//India Time:
 	let dateIN = dates[3];
@@ -53,11 +57,12 @@ function update(dates) {
 	if (minutesIN < 10) minutesIN = "0" + minutesIN;
 	let secondsIN = dateIN.getSeconds();
 	if (secondsIN < 10) secondsIN = "0" + secondsIN;
-		        
-	document.getElementById("h_in").innerHTML = hoursIN;
-	document.getElementById("m_in").innerHTML = minutesIN;
-	document.getElementById("s_in").innerHTML = secondsIN;
-
+	
+	if (document.getElementById("intime-container") != null) {	        
+		document.getElementById("h_in").innerHTML = hoursIN;
+		document.getElementById("m_in").innerHTML = minutesIN;
+		document.getElementById("s_in").innerHTML = secondsIN;
+	}
 }
 
 setInterval(function () {update(dateCalc());}, 1000);
@@ -65,12 +70,15 @@ setInterval(function () {update(dateCalc());}, 1000);
 switch (true) {
 	case dateCalc()[0].toTimeString() === dateCalc()[1].toTimeString():
 		greeting("Hey, New Yorker!");
+		document.getElementById('nytime-container').outerHTML = "";
 		break;
 	case dateCalc()[0].toTimeString() === dateCalc()[2].toTimeString():
 		greeting("Glory to Ukraine!");
+		document.getElementById('uatime-container').outerHTML = ""; 
 		break;
 	case dateCalc()[0].toTimeString() === dateCalc()[3].toTimeString():
 		greeting("Hello, Sirr!");
+		document.getElementById('intime-container').outerHTML = "";
 		break;
 }
 
