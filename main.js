@@ -75,3 +75,14 @@ function dateCalc() {
 	let arr = [date, dateNY, dateUA];
 	return arr;
 }
+
+function secToggle() {
+	let els = document.getElementsByClassName('sec');
+	for (let item of els) {
+		if (item.style.display === "none") {
+	    item.style.display = "inline";
+	  	} else {
+	    	item.style.display = "none";
+	  	}
+  	}
+}
