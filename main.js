@@ -1,5 +1,10 @@
+//Constant for Local Time Container
+const lt_cont = document.getElementById("localtime-container");
+
 function update() {
+	//User's Local Time:
 	let date = new Date();
+
 	let hours = date.getHours();
 	if (hours < 10) hours = "0" + hours;
 	let minutes = date.getMinutes();
@@ -11,10 +16,10 @@ function update() {
 	document.getElementById("s").innerHTML = seconds;
 
 	//New York Time:
-	var dateNY = date.toLocaleString("en-US", {timeZone: "America/New_York"});
+	let dateNY = date.toLocaleString("en-US", {timeZone: "America/New_York"});
     dateNY = new Date(dateNY);
                 
-    if (date == dateNY) console.log("hey, New Yorker!")
+    greeting(date, dateNY, "Hey, New Yorker!");
                 
     let hoursNY = dateNY.getHours();
 	if (hoursNY < 10) hoursNY = "0" + hoursNY;
@@ -28,11 +33,12 @@ function update() {
 	document.getElementById("s_ny").innerHTML = secondsNY;
 
 	//Ukraine (Kyiv) Time:
-	var dateUA = date.toLocaleString("en-US", {timeZone: "Europe/Kiev"});
+	let dateUA = date.toLocaleString("en-US", {timeZone: "Europe/Kiev"});
     dateUA = new Date(dateUA);
-                
-    if (date == dateUA) console.log("Glory to Ukraine!")
-                
+
+    
+    greeting(date, dateUA, "Glory to Ukraine!");
+
     let hoursUA = dateUA.getHours();
 	if (hoursUA < 10) hoursUA = "0" + hoursUA;
 	let minutesUA = dateUA.getMinutes();
@@ -48,3 +54,12 @@ function update() {
 }
 
 setInterval(update, 1000);
+
+function greeting(local, zoneTime, text) {
+	if (local.toDateString() === zoneTime.toDateString()) {
+		let greetp = document.createElement("p");
+    	greetp.appendChild(document.createTextNode(text));
+    	lt_cont.appendChild(greetp);
+
+}
+	}
