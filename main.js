@@ -26,6 +26,25 @@ function update() {
 	document.getElementById("h_ny").innerHTML = hoursNY;
 	document.getElementById("m_ny").innerHTML = minutesNY;
 	document.getElementById("s_ny").innerHTML = secondsNY;
+
+	//Ukraine (Kyiv) Time:
+	var dateUA = date.toLocaleString("en-US", {timeZone: "Europe/Kiev"});
+    dateUA = new Date(dateUA);
+                
+    if (date == dateUA) console.log("Glory to Ukraine!")
+                
+    let hoursUA = dateUA.getHours();
+	if (hoursUA < 10) hoursUA = "0" + hoursUA;
+	let minutesUA = dateUA.getMinutes();
+	if (minutesUA < 10) minutesUA = "0" + minutesUA;
+	let secondsUA = dateUA.getSeconds();
+	if (secondsUA < 10) secondsUA = "0" + secondsUA;
+		        
+	document.getElementById("h_ua").innerHTML = hoursUA;
+	document.getElementById("m_ua").innerHTML = minutesUA;
+	document.getElementById("s_ua").innerHTML = secondsUA;
+
+
 }
 
 setInterval(update, 1000);
