@@ -55,7 +55,7 @@ function update(dates) {
 	let dateIN = dates[3];
 
     let hoursIN = dateIN.getHours();
-	if (hoursUA < 10) hoursUA = "0" + hoursIN;
+	if (hoursIN < 10) hoursIN = "0" + hoursIN;
 	let minutesIN = dateUA.getMinutes();
 	if (minutesIN < 10) minutesIN = "0" + minutesIN;
 	let secondsIN = dateIN.getSeconds();
