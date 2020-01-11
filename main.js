@@ -3,6 +3,9 @@ const lt_cont = document.getElementById("localtime-container");
 
 function update(dates) {
 	
+	colonShow();
+	setTimeout(colonHide, 500);
+
 	//User's Local Time:
 	let date = dates[0];
 
@@ -63,9 +66,12 @@ function update(dates) {
 		document.getElementById("m_in").innerHTML = minutesIN;
 		document.getElementById("s_in").innerHTML = secondsIN;
 	}
+
 }
 
 setInterval(function () {update(dateCalc());}, 1000);
+
+//Switcher for greeter which also removes a geo timezone is it's equal to user's local time:
 
 switch (true) {
 	case dateCalc()[0].toTimeString() === dateCalc()[1].toTimeString():
@@ -82,11 +88,15 @@ switch (true) {
 		break;
 }
 
+//Greeter if one of the encoded timezones is detected:
+
 function greeting(text) {
 		let greetp = document.createElement("p");
     	greetp.appendChild(document.createTextNode(text));
     	lt_cont.appendChild(greetp);
 }
+
+//Function for calculating user's local time and time of various timezones:
 
 function dateCalc() {
 	let date = new Date();
@@ -103,6 +113,24 @@ function dateCalc() {
 	let arr = [date, dateNY, dateUA, dateIN];
 	return arr;
 }
+
+//Functions for colon blinking, activated in update():
+
+function colonHide() {
+	let els = document.getElementsByClassName('colon');
+	for (let item of els) {
+		item.style.visibility = "hidden";
+	}
+}
+
+function colonShow() {
+	let els = document.getElementsByClassName('colon');
+	for (let item of els) {
+		item.style.visibility = "visible";
+	}
+}
+
+//Functions for toggling menu:
 
 function secToggle() {
 	let els = document.getElementsByClassName('sec');
