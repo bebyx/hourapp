@@ -44,6 +44,20 @@ function update(dates) {
 	document.getElementById("m_ua").innerHTML = minutesUA;
 	document.getElementById("s_ua").innerHTML = secondsUA;
 
+	//India Time:
+	let dateIN = dates[3];
+
+    let hoursIN = dateIN.getHours();
+	if (hoursUA < 10) hoursUA = "0" + hoursIN;
+	let minutesIN = dateUA.getMinutes();
+	if (minutesIN < 10) minutesIN = "0" + minutesIN;
+	let secondsIN = dateIN.getSeconds();
+	if (secondsIN < 10) secondsIN = "0" + secondsIN;
+		        
+	document.getElementById("h_in").innerHTML = hoursIN;
+	document.getElementById("m_in").innerHTML = minutesIN;
+	document.getElementById("s_in").innerHTML = secondsIN;
+
 }
 
 setInterval(function () {update(dateCalc());}, 1000);
@@ -54,6 +68,9 @@ switch (true) {
 		break;
 	case dateCalc()[0].toTimeString() === dateCalc()[2].toTimeString():
 		greeting("Glory to Ukraine!");
+		break;
+	case dateCalc()[0].toTimeString() === dateCalc()[3].toTimeString():
+		greeting("Hello, Sirr!");
 		break;
 }
 
@@ -70,9 +87,12 @@ function dateCalc() {
     dateNY = new Date(dateNY);
 
 	let dateUA = date.toLocaleString("en-US", {timeZone: "Europe/Kiev"});
-    dateUA = new Date(dateUA);    	
+    dateUA = new Date(dateUA);
 
-	let arr = [date, dateNY, dateUA];
+    let dateIN = date.toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+    dateIN = new Date(dateIN);
+
+	let arr = [date, dateNY, dateUA, dateIN];
 	return arr;
 }
 
