@@ -1,5 +1,7 @@
 body {
 	padding-left: 20px;
+	background-color: white;
+  	color: black;
 }
 
 p {
@@ -11,4 +13,13 @@ p {
 	font-size: 60%;
 	vertical-align: super;
 	padding-left: 1px;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+button {
+	color: black !important;
 }

@@ -86,3 +86,8 @@ function secToggle() {
 	  	}
   	}
 }
+
+function lightToggle() {
+	let main_container = document.body;
+	main_container.classList.toggle("dark-mode");
+}
