@@ -48,16 +48,19 @@ function update(dates) {
 
 setInterval(function () {update(dateCalc());}, 1000);
 
-greeting(dateCalc()[0], dateCalc()[1], "Hey, New Yorker!")
-greeting(dateCalc()[0], dateCalc()[2], "Glory to Ukraine!")
+switch (true) {
+	case dateCalc()[0].toTimeString() === dateCalc()[1].toTimeString():
+		greeting("Hey, New Yorker!");
+		break;
+	case dateCalc()[0].toTimeString() === dateCalc()[2].toTimeString():
+		greeting("Glory to Ukraine!");
+		break;
+}
 
-
-function greeting(local, zoneTime, text) {
-	if (local.toDateString() === zoneTime.toDateString()) {
+function greeting(text) {
 		let greetp = document.createElement("p");
     	greetp.appendChild(document.createTextNode(text));
     	lt_cont.appendChild(greetp);
-	}
 }
 
 function dateCalc() {
