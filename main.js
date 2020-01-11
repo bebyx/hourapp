@@ -1,9 +1,10 @@
 //Constant for Local Time Container
 const lt_cont = document.getElementById("localtime-container");
 
-function update() {
+function update(dates) {
+	
 	//User's Local Time:
-	let date = new Date();
+	let date = dates[0];
 
 	let hours = date.getHours();
 	if (hours < 10) hours = "0" + hours;
@@ -16,10 +17,7 @@ function update() {
 	document.getElementById("s").innerHTML = seconds;
 
 	//New York Time:
-	let dateNY = date.toLocaleString("en-US", {timeZone: "America/New_York"});
-    dateNY = new Date(dateNY);
-                
-    greeting(date, dateNY, "Hey, New Yorker!");
+	let dateNY = dates[1];
                 
     let hoursNY = dateNY.getHours();
 	if (hoursNY < 10) hoursNY = "0" + hoursNY;
@@ -33,11 +31,7 @@ function update() {
 	document.getElementById("s_ny").innerHTML = secondsNY;
 
 	//Ukraine (Kyiv) Time:
-	let dateUA = date.toLocaleString("en-US", {timeZone: "Europe/Kiev"});
-    dateUA = new Date(dateUA);
-
-    
-    greeting(date, dateUA, "Glory to Ukraine!");
+	let dateUA = dates[2];
 
     let hoursUA = dateUA.getHours();
 	if (hoursUA < 10) hoursUA = "0" + hoursUA;
@@ -50,16 +44,31 @@ function update() {
 	document.getElementById("m_ua").innerHTML = minutesUA;
 	document.getElementById("s_ua").innerHTML = secondsUA;
 
-
 }
 
-setInterval(update, 1000);
+setInterval(function () {update(dateCalc());}, 1000);
+
+greeting(dateCalc()[0], dateCalc()[1], "Hey, New Yorker!")
+greeting(dateCalc()[0], dateCalc()[2], "Glory to Ukraine!")
+
 
 function greeting(local, zoneTime, text) {
 	if (local.toDateString() === zoneTime.toDateString()) {
 		let greetp = document.createElement("p");
     	greetp.appendChild(document.createTextNode(text));
     	lt_cont.appendChild(greetp);
-
-}
 	}
+}
+
+function dateCalc() {
+	let date = new Date();
+	
+	let dateNY = date.toLocaleString("en-US", {timeZone: "America/New_York"});
+    dateNY = new Date(dateNY);
+
+	let dateUA = date.toLocaleString("en-US", {timeZone: "Europe/Kiev"});
+    dateUA = new Date(dateUA);    	
+
+	let arr = [date, dateNY, dateUA];
+	return arr;
+}
